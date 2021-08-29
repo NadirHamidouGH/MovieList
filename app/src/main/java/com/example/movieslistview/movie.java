@@ -3,10 +3,31 @@ package com.example.movieslistview;
 public class movie {
 
     private String title;
+    private String date;
     private String description;
     private String imgUrl;
 
-    public movie(){}
+    public movie(){
+
+
+    }
+
+    public movie(String title,String date, String description , String imgUrl){
+
+        this.title = title;
+        this.date = date;
+        this.description = description;
+        this.imgUrl = imgUrl;
+
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public String getTitle() {
         return title;
@@ -32,11 +53,5 @@ public class movie {
         this.imgUrl = imgUrl;
     }
 
-    public movie(String title, String description , String imgUrl){
 
-        this.title = title;
-        this.description = description;
-        this.imgUrl = imgUrl;
-
-    }
 }
