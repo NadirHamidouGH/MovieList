@@ -41,8 +41,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
         String note = "IMDb "+ getIntent().getExtras().getString("note") + "/10";
         String imgUrl =  getIntent().getExtras().getString("image");
 
-      //  Picasso.get().load(movieList.get(position).getImgUrl()).into(holder.movieImg);
-
         Picasso.get().load(imgUrl).into(movieImg);
 
         movieTitle.setText(title);

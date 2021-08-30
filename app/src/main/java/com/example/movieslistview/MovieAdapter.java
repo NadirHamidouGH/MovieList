@@ -29,8 +29,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     public MovieAdapter(Context context, List<movie> movies) {
         this.inflater = LayoutInflater.from(context);
-        //this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
 
         this.movieList = movies;
 
@@ -46,13 +44,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
         try{
 
-            view //= inflater.inflate(R.layout.activity_movies_list_item,parent,false);
-
-            = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.activity_movies_list_item, parent, false);
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_movies_list_item, parent, false);
 
         }
-
 
         catch (Exception e){
             Log.d("err :", "onCreateViewHolder: "+ e);
@@ -66,7 +60,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull MovieAdapter.ViewHolder holder, int position) {
         holder.movieTitle.setText(movieList.get(position).getTitle());
         holder.movieDate.setText(movieList.get(position).getDate());
-      // holder.movieDescription.setText(movieList.get(position).getDescription());
         Picasso.get().load(movieList.get(position).getImgUrl()).into(holder.movieImg);
     }
 
@@ -84,20 +77,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             super(itemView);
             movieTitle = itemView.findViewById(R.id.MovieTitle);
             movieDate = itemView.findViewById(R.id.MovieDate);
-           // movieDescription =  itemView.findViewById(R.id.Description);
             movieImg =  itemView.findViewById(R.id.image);
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
 
-              //  context = itemView.getContext();
                 @Override
                 public void onClick(View v) {
                     int itemPostion = getLayoutPosition();
-                    // Toast.makeText(v.getContext(), "Do Something With this Click" + itemPostion + "" +movieList.get(itemPostion).getTitle(), Toast.LENGTH_SHORT).show();
-
-                  //  Intent myIntent = new Intent(MainActivity.this, MovieDetailsActivity.class);
-                  //  MainActivity.this.startActivity(myIntent);
 
                     Intent intent = new Intent(v.getContext(), MovieDetailsActivity.class);
                     intent.putExtra("title", movieList.get(itemPostion).getTitle());
