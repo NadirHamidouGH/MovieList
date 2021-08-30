@@ -15,21 +15,27 @@
         tools:ignore="MissingConstraints">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/DetailsImage"
             android:layout_width="match_parent"
             android:layout_height="210dp"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/DetailsTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="title" />
+            android:text="DetailsTitle" />
 
         <TextView
-            android:id="@+id/description"
+            android:id="@+id/DetailsDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="description" />
+            android:text="DetailsDate" />
+
+        <TextView
+            android:id="@+id/DetailsDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DetailsDescription" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
