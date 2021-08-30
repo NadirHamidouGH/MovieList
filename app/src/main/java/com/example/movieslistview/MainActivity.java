@@ -55,9 +55,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 public class MainActivity extends AppCompatActivity {
 
-
+MovieViewModel mvvm = new MovieViewModel();
 
     RecyclerView recyclerView;
     List<movie> movies;
@@ -85,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         movies = new ArrayList<>();
 
         try {
-            extractMovies();
+            mvvm.extractMovies(getApplicationContext());
 
         }catch (Exception e){
             Log.d("Extraction movies  ", "Error : " + e);
@@ -100,68 +101,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-    private void extractMovies() {
-
-        RequestQueue queue = Volley.newRequestQueue(this);
-        JsonObjectRequest jsonArrayRequest = new JsonObjectRequest(Request.Method.GET, JSON_URL, null, new Response.Listener<JSONObject>() {
-
-
-            @SuppressLint("LongLogTag")
-            @Override
-            public void onResponse(JSONObject response) {
-
-                JSONArray movieArray=null;
-
-                try {
-                     movieArray  = response.getJSONArray("results");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                for (int i = 0; i < movieArray.length(); i++) {
-
-
-                    movie movie = new movie();
-
-                    try {
-                        JSONObject movieObject = movieArray.getJSONObject(i);
-                        movie.setId(movieObject.getInt("id"));
-                        movie.setTitle(movieObject.getString("title"));
-                        movie.setNote(movieObject.getString("vote_average"));
-                        movie.setDate(movieObject.getString("release_date"));
-                        movie.setDescription(movieObject.getString("overview"));
-                        movie.setImgUrl("https://image.tmdb.org/t/p/w500"+movieObject.getString("poster_path"));
-
-                        Log.d("title : ===============> ", "onResponse: "+movie.getTitle());
-                        movies.add(movie);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-
-                recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-
-                adapter = new MovieAdapter(getApplicationContext(), movies);
-
-                recyclerView.setAdapter(adapter);
-
-
-            }
-        }
-
-        , new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("tag", "onErrorResponse: "+ error.getMessage());
-                Toast.makeText(MainActivity.this, "Error :"+error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-        queue.add(jsonArrayRequest);
-    }
 
 
 
