@@ -160,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject movieObject = movieArray.getJSONObject(i);
                         movie.setId(movieObject.getInt("id"));
                         movie.setTitle(movieObject.getString("title"));
+                        movie.setNote(movieObject.getString("vote_average"));
                         movie.setDate(movieObject.getString("release_date"));
                         movie.setDescription(movieObject.getString("overview"));
                         movie.setImgUrl("https://image.tmdb.org/t/p/w500"+movieObject.getString("poster_path"));

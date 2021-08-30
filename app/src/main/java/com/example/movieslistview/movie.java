@@ -4,6 +4,7 @@ public class movie {
     private int id;
     private String title;
     private String date;
+    private String note;
     private String description;
     private String imgUrl;
 
@@ -12,7 +13,15 @@ public class movie {
 
     }
 
-    public movie(String title,String date, String description , String imgUrl){
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public movie(String title, String date, String description , String imgUrl){
 
         this.title = title;
         this.date = date;

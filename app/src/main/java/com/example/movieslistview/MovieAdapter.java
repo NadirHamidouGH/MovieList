@@ -94,7 +94,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                 @Override
                 public void onClick(View v) {
                     int itemPostion = getLayoutPosition();
-                   // Toast.makeText(v.getContext(), "Do Something With this Click" + itemPostion + "" +movieList.get(itemPostion).getTitle(), Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(v.getContext(), "Do Something With this Click" + itemPostion + "" +movieList.get(itemPostion).getTitle(), Toast.LENGTH_SHORT).show();
 
                   //  Intent myIntent = new Intent(MainActivity.this, MovieDetailsActivity.class);
                   //  MainActivity.this.startActivity(myIntent);
@@ -102,6 +102,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                     Intent intent = new Intent(v.getContext(), MovieDetailsActivity.class);
                     intent.putExtra("title", movieList.get(itemPostion).getTitle());
                     intent.putExtra("date", movieList.get(itemPostion).getDate());
+                    intent.putExtra("note", movieList.get(itemPostion).getNote());
                     intent.putExtra("desciption", movieList.get(itemPostion).getDescription());
                     intent.putExtra("image", movieList.get(itemPostion).getImgUrl());
 
