@@ -19,25 +19,24 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MovieViewModel extends ViewModel {
 
     private static String JSON_URL = "https://api.themoviedb.org/3/discover/movie?api_key=08fce566e3d5a9aa500c2ccf5c32eb94";
 
-    RecyclerView recyclerView;
-    List<movie> movies;
+    List<movie> moviesL = new ArrayList<>();
 
     MovieAdapter adapter;
     private Object RequestQueue;
 
-    public void extractMovies(final Context ctx) {
+    public void extractMovies(final Context ctx, final RecyclerView recyclerView) {
 
         RequestQueue queue = Volley.newRequestQueue(ctx);
         JsonObjectRequest jsonArrayRequest = new JsonObjectRequest(Request.Method.GET, JSON_URL, null, new Response.Listener<JSONObject>() {
 
 
-            @SuppressLint("LongLogTag")
             @Override
             public void onResponse(JSONObject response) {
 
@@ -63,8 +62,8 @@ public class MovieViewModel extends ViewModel {
                         movie.setDescription(movieObject.getString("overview"));
                         movie.setImgUrl("https://image.tmdb.org/t/p/w500"+movieObject.getString("poster_path"));
 
-                        Log.d("title : ===============> ", "onResponse: "+movie.getTitle());
-                        movies.add(movie);
+                        Log.d("err", "onResponse: "+movie.getTitle());
+                        moviesL.add(movie);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -73,7 +72,7 @@ public class MovieViewModel extends ViewModel {
 
                 recyclerView.setLayoutManager(new LinearLayoutManager(ctx));
 
-                adapter = new MovieAdapter(ctx, movies);
+                adapter = new MovieAdapter(ctx, moviesL);
 
                 recyclerView.setAdapter(adapter);
 

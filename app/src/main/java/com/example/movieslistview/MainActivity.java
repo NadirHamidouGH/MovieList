@@ -86,7 +86,7 @@ MovieViewModel mvvm = new MovieViewModel();
         movies = new ArrayList<>();
 
         try {
-            mvvm.extractMovies(getApplicationContext());
+            mvvm.extractMovies(getApplicationContext(),recyclerView);
 
         }catch (Exception e){
             Log.d("Extraction movies  ", "Error : " + e);
