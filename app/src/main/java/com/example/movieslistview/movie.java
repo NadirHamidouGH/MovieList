@@ -1,7 +1,7 @@
 package com.example.movieslistview;
 
 public class movie {
-
+    private int id;
     private String title;
     private String date;
     private String description;
@@ -19,6 +19,14 @@ public class movie {
         this.description = description;
         this.imgUrl = imgUrl;
 
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDate() {

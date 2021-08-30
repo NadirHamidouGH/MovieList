@@ -1,6 +1,8 @@
 package com.example.movieslistview;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,11 +12,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import static androidx.core.content.ContextCompat.startActivity;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
@@ -84,10 +89,21 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
+
+              //  context = itemView.getContext();
                 @Override
                 public void onClick(View v) {
+                    int itemPostion = getLayoutPosition();
+                   // Toast.makeText(v.getContext(), "Do Something With this Click" + itemPostion + "" +movieList.get(itemPostion).getTitle(), Toast.LENGTH_SHORT).show();
 
-                    Toast.makeText(v.getContext(), "Do Something With this Click", Toast.LENGTH_SHORT).show();
+                  //  Intent myIntent = new Intent(MainActivity.this, MovieDetailsActivity.class);
+                  //  MainActivity.this.startActivity(myIntent);
+
+                    Intent intent = new Intent(v.getContext(), MovieDetailsActivity.class);
+                    intent.putExtra("title", movieList.get(itemPostion).getTitle());
+                    intent.putExtra("date", movieList.get(itemPostion).getDate());
+                    intent.putExtra("desciption", movieList.get(itemPostion).getDescription());
+                    v.getContext().startActivity(intent);
                 }
             });
 

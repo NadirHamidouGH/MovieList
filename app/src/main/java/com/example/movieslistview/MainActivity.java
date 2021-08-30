@@ -81,7 +81,10 @@ public class MainActivity extends AppCompatActivity {
         {
             this.getSupportActionBar().hide();
         }
-        catch (NullPointerException e){}
+        catch (NullPointerException e){
+
+            Log.d("Err", "onCreate: "+e);
+        }
 
         setContentView(R.layout.activity_main);
        // this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -155,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
 
                     try {
                         JSONObject movieObject = movieArray.getJSONObject(i);
-
+                        movie.setId(movieObject.getInt("id"));
                         movie.setTitle(movieObject.getString("title"));
                         movie.setDate(movieObject.getString("release_date"));
                         movie.setDescription(movieObject.getString("overview"));
